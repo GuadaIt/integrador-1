@@ -1,11 +1,16 @@
 const nombreDeLaTienda = "Dosis"; // Tomate una dosis de rosé, una sobredosis de rosé
+// amé el nombre
+
 let producto1 = "Champagne Extra Brut";
 let precioProducto1 = 500; 
 let producto2 = "Fernet Branca 1L";
 let precioProducto2 = 450;
 let códigoDeDescuento = "tomateUnaDosis";
+// amé el  código de descuento
 const respuestaAfirmativa = "Si";
 const respuestaNegativa = "No";
+
+// amé los nombres de variables. Claros y descriptivos. 
 
 let nombreDeCliente = prompt(`Bienvenide a Dosis, tienda de bebidas.
 Dime tu nombre y te diré que bebida eres`);
@@ -16,11 +21,22 @@ alert(`¡Hola, ${nombreDeCliente}! Tenemos los siguientes productos en promoció
 let respuestaProducto1 = prompt(`¿Querés comprar ${producto1}?`);
 let unidadesProducto1
 respuestaProducto1 == respuestaAfirmativa && (unidadesProducto1 = prompt(`¿Cuántas unidades querés comprar?`));
+
 let respuestaProducto2
+// Este prompt de abajo sólo aparece si antes respondimos que No. 
+// Como después usamos a producto2, y nunca apareció, nos figura como undefined. 
+// No es necesario validar si la respuesta a producto1 fue negativa, queremos que ese prompt aparezca
+// aunque el usuario haya respondido que no. 
+// Modifiquemos la linea para que quede asi directamente
+// respuestaProducto2 = prompt(`¿Querés comprar ${producto2}`)
 respuestaProducto1 == respuestaNegativa && (respuestaProducto2 = prompt(`¿Querés comprar ${producto2}`));
 let unidadesProducto2
 respuestaProducto2 == respuestaAfirmativa && (unidadesProducto2 = prompt(`¿Cuántas unidades querés comprar?`));
 
+// Si el usuario nos dice que "no" en cualquiera de los casos, nunca definimos cuánto vale unidadesProducto1 o
+// unidadesProducto2. 
+// podriamos resolverlo declarándolas como 0. Así, si el usuario dice que no quiere comprar ese producto, hacemos la cuenta por 0
+// y no aparece ese undefined. 
 alert(`El detalle de tu compra es:
 - ${producto1}: ${unidadesProducto1} x $${precioProducto1}
   Subtotal: ${precioProducto1} * ${unidadesProducto1}
@@ -29,6 +45,20 @@ alert(`El detalle de tu compra es:
  
   Total: ${precioProducto1} * ${unidadesProducto1} + ${precioProducto2} * ${unidadesProducto2}
 `)
+
+// en la linea de arriba, para mostrarle el total al usuario como un numero, podriamos antes definirlo como variable
+// El codigo quedaria asi:
+
+// let total =  (precioProducto1 * unidadesProducto1) + (precioProducto2 * unidadesProducto2)
+
+// alert(`El detalle de tu compra es:
+// - ${producto1}: ${unidadesProducto1} x $${precioProducto1}
+//   Subtotal: ${precioProducto1} * ${unidadesProducto1}
+// - ${producto2}: ${unidadesProducto2} x $${precioProducto2}
+//   Subtotal: $${precioProducto2} * ${unidadesProducto2}
+//  
+//   Total: ${total}
+// `)
 
 
 
