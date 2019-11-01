@@ -4,6 +4,11 @@ let precioProducto1 = 500;
 let producto2 = "Fernet Branca 1L";
 let precioProducto2 = 450;
 let códigoDeDescuento = "tomateUnaDosis";
+let respuestaProducto2;
+let unidadesProducto1 = 0;
+let unidadesProducto2 = 0;
+let modoDePago;
+let cantidadDeCuotas; 
 const respuestaAfirmativa = "Si";
 const respuestaNegativa = "No";
 
@@ -14,45 +19,57 @@ alert(`¡Hola, ${nombreDeCliente}! Tenemos los siguientes productos en promoció
 - ${producto2}`);
 
 let respuestaProducto1 = prompt(`¿Querés comprar ${producto1}?`);
-let unidadesProducto1
-respuestaProducto1 == respuestaAfirmativa && (unidadesProducto1 = prompt(`¿Cuántas unidades querés comprar?`));
-let respuestaProducto2
-respuestaProducto1 == respuestaNegativa && (respuestaProducto2 = prompt(`¿Querés comprar ${producto2}`));
-let unidadesProducto2
-respuestaProducto2 == respuestaAfirmativa && (unidadesProducto2 = prompt(`¿Cuántas unidades querés comprar?`));
+
+respuestaProducto1 == respuestaAfirmativa && (unidadesProducto1 = Number(prompt(`¿Cuántas unidades querés comprar?`)));
+respuestaProducto2 = prompt(`¿Querés comprar ${producto2}`);
+respuestaProducto2 == respuestaAfirmativa && (unidadesProducto2 = Number(prompt(`¿Cuántas unidades querés comprar?`)));
+
+let subtotal1 = precioProducto1 * unidadesProducto1;
+let subtotal2 = precioProducto2 * unidadesProducto2;
+let total = subtotal1 + subtotal2;
 
 alert(`El detalle de tu compra es:
 - ${producto1}: ${unidadesProducto1} x $${precioProducto1}
-  Subtotal: ${precioProducto1} * ${unidadesProducto1}
+  Subtotal: $${subtotal1}
 - ${producto2}: ${unidadesProducto2} x $${precioProducto2}
-  Subtotal: $${precioProducto2} * ${unidadesProducto2}
+  Subtotal: $${subtotal2}
  
-  Total: ${precioProducto1} * ${unidadesProducto1} + ${precioProducto2} * ${unidadesProducto2}
+  Total: $${total}
+`) 
+
+modoDePago = prompt("¿Querés abonar con tarjeta de crédito?");
+modoDePago == respuestaAfirmativa && (cantidadDeCuotas = Number(prompt("¿En cuántas cuotas deseas abonar?")));
+
+let totalEnCuotas = total / cantidadDeCuotas;
+
+alert(`El detalle de tu compra es:
+- ${producto1}: ${unidadesProducto1} x $${precioProducto1}
+  Subtotal: $${subtotal1}
+- ${producto2}: ${unidadesProducto2} x $${precioProducto2}
+  Subtotal: $${subtotal2}
+ 
+  Total: $${total}
+  A abonar en ${cantidadDeCuotas} cuotas de $${totalEnCuotas} 
 `)
 
+let valorDescuento = (10 * total) / 100;
+let totalFinal = total - valorDescuento;
+let respuestaCodigo = prompt(`¿Tenes un código de descuento?`);
+let ingresaCodigo;
 
+respuestaCodigo == respuestaAfirmativa && (ingresaCodigo = prompt(`Ingresa el código de descuento`));
 
-/*1. Mostrar un saludo de bienvenida y preguntar el nombre de la clienta
-   2. Mostrarle los productos en promoción (2 productos)
-   3. Preguntarle si quiere comprar el producto 1.
-      a. Si responde "SI" preguntar cuántas unidades va a llevar
-   4. Preguntarle si quiere comprar el producto 2.
-      a. Si responde "SI" preguntar cuántas unidades va a llevar
-   5. Mostrar el detalle de la compra con:
-      - subtotales de cada producto (precio x cantidad) 
-      - total (suma de subtotales)
-   6. Preguntar si desea abonar con tarjeta de crédito
-      a. Si responde "SI" preguntar en cuántas cuotas desea abonar  
-   7. Mostrar el detalle de la compra con:
-      - subtotales de cada producto (precio x cantidad) 
-      - total (suma de subtotales)
-      - si abona con tarjeta, cantidad de cuotas y monto de cada cuota a pagar
-   8. Preguntar si tiene un código de descuento
-      - si la respuesta es "SÍ", pedir que ingrese el código
-      - mostrar si el código ingresado es correcto o incorrecto
-   9. Mostrar el detalle de la compra con:
-      - subtotales de cada producto (precio x cantidad) 
-      - total (suma de subtotales)
-      - si tiene código y lo ingresó bien, mostrar el descuento y el total final
-      - si abona con tarjeta, cantidad de cuotas y monto de cada cuota a pagar
-   10. Mostrar un saludo de despedida */
+ingresaCodigo == códigoDeDescuento && alert(`El detalle de tu compra es:
+- ${producto1}: ${unidadesProducto1} x $${precioProducto1}
+  Subtotal: $${subtotal1}
+- ${producto2}: ${unidadesProducto2} x $${precioProducto2}
+  Subtotal: $${subtotal2}
+  Total: $${total}
+
+  Descuento: $${valorDescuento} 
+ 
+  Total final: $${totalFinal} 
+  A abonar en ${cantidadDeCuotas} cuotas de $${totalEnCuotas} 
+`)
+
+alert(`¡Gracias por tomarte una Dosis con nosotros!`)
