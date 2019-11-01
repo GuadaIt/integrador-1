@@ -1,3 +1,5 @@
+// Código muy prolijo, buenos nombres de variables, gran trabajo en general. 
+
 const nombreDeLaTienda = "Dosis"; // Tomate una dosis de rosé, una sobredosis de rosé
 let producto1 = "Champagne Extra Brut";
 let precioProducto1 = 500; 
@@ -38,6 +40,10 @@ alert(`El detalle de tu compra es:
 `) 
 
 modoDePago = prompt("¿Querés abonar con tarjeta de crédito?");
+// Como no hay código que controle qué pasa si no quiero pagar en cuotas, si escribo cualquiercosa que no sea "Si", 
+// voy a ver Undefined y NaN cada vez que se hable de las cuotas. 
+// Tendríamos que hacer un alert diferente o una variable para el alert cada vez que se habla de cuotas 
+
 modoDePago == respuestaAfirmativa && (cantidadDeCuotas = Number(prompt("¿En cuántas cuotas deseas abonar?")));
 
 let totalEnCuotas = total / cantidadDeCuotas;
@@ -59,6 +65,10 @@ let ingresaCodigo;
 
 respuestaCodigo == respuestaAfirmativa && (ingresaCodigo = prompt(`Ingresa el código de descuento`));
 
+// Como este alert solo sale si el codigo es correcto, en caso de lo que lo escriba mal
+// Se va a mostrar el ultimo mensaje sin darme ninguna otra información. 
+// Debería haber un alert para el caso de que no haya ingresado bien el descuento, 
+//y que el total se muestre sin el mismo. 
 ingresaCodigo == códigoDeDescuento && alert(`El detalle de tu compra es:
 - ${producto1}: ${unidadesProducto1} x $${precioProducto1}
   Subtotal: $${subtotal1}
