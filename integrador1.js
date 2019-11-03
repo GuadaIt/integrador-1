@@ -8,7 +8,8 @@ let respuestaProducto2;
 let unidadesProducto1 = 0;
 let unidadesProducto2 = 0;
 let modoDePago;
-let cantidadDeCuotas; 
+let cantidadDeCuotas = 0; 
+let totalEnCuotas = "";
 const respuestaAfirmativa = "Si";
 const respuestaNegativa = "No";
 
@@ -38,11 +39,7 @@ alert(`El detalle de tu compra es:
 `) 
 
 modoDePago = prompt("¿Querés abonar con tarjeta de crédito?");
-modoDePago == respuestaAfirmativa && (cantidadDeCuotas = Number(prompt("¿En cuántas cuotas deseas abonar?")));
-
-let totalEnCuotas = total / cantidadDeCuotas;
-
-alert(`El detalle de tu compra es:
+modoDePago == respuestaAfirmativa && (cantidadDeCuotas = Number(prompt("¿En cuántas cuotas deseas abonar?"))) && alert(`El detalle de tu compra es:
 - ${producto1}: ${unidadesProducto1} x $${precioProducto1}
   Subtotal: $${subtotal1}
 - ${producto2}: ${unidadesProducto2} x $${precioProducto2}
@@ -50,14 +47,52 @@ alert(`El detalle de tu compra es:
  
   Total: $${total}
   A abonar en ${cantidadDeCuotas} cuotas de $${totalEnCuotas} 
+`);
+
+(modoDePago == respuestaNegativa || modoDePago == "") && alert(`El detalle de tu compra es:
+- ${producto1}: ${unidadesProducto1} x $${precioProducto1}
+  Subtotal: $${subtotal1}
+- ${producto2}: ${unidadesProducto2} x $${precioProducto2}
+  Subtotal: $${subtotal2}
+ 
+  Total: $${total}
 `)
 
+totalEnCuotas = total / cantidadDeCuotas;
 let valorDescuento = (10 * total) / 100;
 let totalFinal = total - valorDescuento;
+
 let respuestaCodigo = prompt(`¿Tenes un código de descuento?`);
 let ingresaCodigo;
 
+respuestaCodigo != respuestaAfirmativa && alert(`El detalle de tu compra es:
+- ${producto1}: ${unidadesProducto1} x $${precioProducto1}
+  Subtotal: $${subtotal1}
+- ${producto2}: ${unidadesProducto2} x $${precioProducto2}
+  Subtotal: $${subtotal2}
+  Total: $${total}
+
+  A abonar en ${cantidadDeCuotas} cuotas de $${totalEnCuotas} 
+`)
+
 respuestaCodigo == respuestaAfirmativa && (ingresaCodigo = prompt(`Ingresa el código de descuento`));
+
+ingresaCodigo == códigoDeDescuento && alert(`El detalle de tu compra es:
+- ${producto1}: ${unidadesProducto1} x $${precioProducto1}
+  Subtotal: $${subtotal1}
+- ${producto2}: ${unidadesProducto2} x $${precioProducto2}
+  Subtotal: $${subtotal2}
+  Total: $${total}
+
+  Descuento: $${valorDescuento} 
+ 
+  Total final: $${totalFinal} 
+  A abonar en ${cantidadDeCuotas} cuotas de $${totalEnCuotas} 
+`)
+
+ingresaCodigo !== códigoDeDescuento && alert("Por favor, ingresa un código válido");
+
+//faltaria que aparezca el prompt despues del alerta "por favor ingresa un codigo valido"
 
 ingresaCodigo == códigoDeDescuento && alert(`El detalle de tu compra es:
 - ${producto1}: ${unidadesProducto1} x $${precioProducto1}
